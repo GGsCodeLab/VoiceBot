@@ -5,7 +5,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const router = require('./src/router');
-
 // Create Express webapp
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,7 +26,7 @@ const WebSocketServer = require('ws');
 const {createClient, LiveTranscriptionEvents} = require('@deepgram/sdk');
 
 const websocketServer = new WebSocketServer.Server({server});
-const deepgramApiKey = '1c22528a731b8c64ae8d33ddc37047b12eeeaed7';
+const deepgramApiKey = process.env.DEEPGRAM_API_KEY;
 
 websocketServer.on('connection', (ws) => {
   console.log('new client connected');
